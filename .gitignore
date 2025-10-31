@@ -13,6 +13,7 @@ public
 docs
 .nyc_output
 cassettes
+.env
 
 # hidden files
 .*
