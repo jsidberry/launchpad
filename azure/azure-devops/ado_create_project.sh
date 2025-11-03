@@ -1,12 +1,21 @@
 #!/bin/bash
 set -e
 
+# Load environment variables from .env if it exists
+if [ -f .env ]; then
+  # Option 1: Safest way – only load valid variable lines
+  export $(grep -v '^#' .env | xargs)
+else
+  echo ".env file not found!"
+  exit 1
+fi
+
 # Variables
-ORGANIZATION="your-org-name"
-PROJECT_NAME="SRE-Pipelines"
-PROJECT_DESCRIPTION="SRE automation and deployment pipelines"
-PROCESS_TEMPLATE="Agile"  # Options: Agile, Basic, Scrum, CMMI
-VISIBILITY="private"       # Options: private, public
+ORGANIZATION=$ADO_ORG_NAME
+PROJECT_NAME=$ADO_PROJECT_NAME
+PROJECT_DESCRIPTION=$ADO_PROJECT_DESCRIPTION
+PROCESS_TEMPLATE=$ADO_PROCESS_TEMPLATE  # Options: Agile, Basic, Scrum, CMMI
+VISIBILITY=$ADO_VISIBILITY       # Options: private, public
 
 # Check if Azure DevOps CLI is installed
 if ! command -v az &> /dev/null; then
