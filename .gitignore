@@ -62,4 +62,6 @@ terraform.tfstate*
 kubeconfig*
 talosconfig*
 *.pub
-*.key
+
+# added
+azure/azure-devops/azuredevops-sp.json
